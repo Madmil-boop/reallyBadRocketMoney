@@ -74,7 +74,7 @@ router.post(
         access_token: accessToken,
       };
       // If user has entered a redirect uri in the .env file
-      if (redirect_uri.indexOf('http') === 0) {
+      if (redirect_uri && redirect_uri.indexOf('http') === 0) {
         linkTokenParams.redirect_uri = redirect_uri;
       }
       const createResponse = await plaid.linkTokenCreate(linkTokenParams);

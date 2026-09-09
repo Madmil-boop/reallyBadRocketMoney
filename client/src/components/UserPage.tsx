@@ -16,7 +16,7 @@ import useAccounts from '../services/accounts.tsx';
 
 import { pluralize } from '../util/index.tsx';
 
-// import Banner from './Banner.tsx';
+import Banner from './Banner.tsx';
 import LaunchLink from './LaunchLink.tsx';
 import SpendingInsights from './SpendingInsights.tsx';
 import NetWorth from './NetWorth.tsx';
@@ -133,7 +133,7 @@ const UserPage = () => {
         BACK TO LOGIN
       </Link>
 
-      {/* <Banner /> */}
+      <Banner />
       {linkTokens.error.error_code != null && (
         <Callout warning>
           <div>
@@ -153,7 +153,7 @@ const UserPage = () => {
       )}
       <UserCard user={user} userId={Number(userId)} removeButton={false} linkButton />
 
-      <Callout style={{ marginBottom: '2rem' }}>
+      {/* <Callout style={{ marginBottom: '2rem' }}>
         <div>
           <strong>Testing with Dynamic Transaction Data:</strong>
         </div>
@@ -173,7 +173,7 @@ const UserPage = () => {
           </a>
           .
         </div>
-      </Callout>
+      </Callout> */}
 
       {numOfItems === 0 && <ErrorMessage />}
       {numOfItems > 0 && transactions.length === 0 && (

@@ -16,7 +16,7 @@ import useAccounts from '../services/accounts.tsx';
 
 import { pluralize } from '../util/index.tsx';
 
-import Banner from './Banner.tsx';
+// import Banner from './Banner.tsx';
 import LaunchLink from './LaunchLink.tsx';
 import SpendingInsights from './SpendingInsights.tsx';
 import NetWorth from './NetWorth.tsx';
@@ -54,7 +54,7 @@ const UserPage = () => {
   const initiateLink = async () => {
     // only generate a link token upon a click from enduser to add a bank;
     // if done earlier, it may expire before enduser actually activates Link to add a bank.
-    await generateLinkToken(userId, null);
+    await generateLinkToken(Number(userId), null);
   };
 
   // update data store with user
@@ -64,67 +64,67 @@ const UserPage = () => {
 
   // set state user from data store
   useEffect(() => {
-    setUser(usersById[userId] || {});
-  }, [usersById, userId]);
+    setUser(usersById[Number(userId)] || {});
+  }, [usersById, Number(userId)]);
 
   useEffect(() => {
     // This gets transactions from the database only.
     // Note that calls to Plaid's /transactions/sync endpoint are only made in response
     // to receipt of a SYNC_UPDATES_AVAILABLE transactions webhook.
-    getTransactionsByUser(userId);
+    getTransactionsByUser(Number(userId));
   }, [getTransactionsByUser, userId]);
 
   useEffect(() => {
-    setTransactions(transactionsByUser[userId] || []);
-  }, [transactionsByUser, userId]);
+    setTransactions(transactionsByUser[Number(userId)] || []);
+  }, [transactionsByUser, Number(userId)]);
 
   // update data store with the user's assets
   useEffect(() => {
-    getAssetsByUser(userId);
-  }, [getAssetsByUser, userId]);
+    getAssetsByUser(Number(userId));
+  }, [getAssetsByUser, Number(userId)]);
 
   useEffect(() => {
     setAssets(assetsByUser.assets || []);
-  }, [assetsByUser, userId]);
+  }, [assetsByUser, Number(userId)]);
 
   // update data store with the user's items
   useEffect(() => {
     if (userId != null) {
-      getItemsByUser(userId, true);
+      getItemsByUser(Number(userId), true);
     }
-  }, [getItemsByUser, userId]);
+  }, [getItemsByUser, Number(userId)]);
 
   // update state items from data store
   useEffect(() => {
-    const newItems: Array<ItemType> = itemsByUser[userId] || [];
+    const newItems: Array<ItemType> = itemsByUser[Number(userId)] || [];
     const orderedItems = sortBy(
       newItems,
       item => new Date(item.updated_at)
     ).reverse();
     setItems(orderedItems);
-  }, [itemsByUser, userId]);
+  }, [itemsByUser, Number(userId)]);
 
   // update no of items from data store
   useEffect(() => {
-    if (itemsByUser[userId] != null) {
-      setNumOfItems(itemsByUser[userId].length);
+    if (itemsByUser[Number(userId)] != null) {
+      setNumOfItems(itemsByUser[Number(userId)].length);
     } else {
       setNumOfItems(0);
     }
-  }, [itemsByUser, userId]);
+  }, [itemsByUser, Number(userId)]);
 
   // update data store with the user's accounts
   useEffect(() => {
-    getAccountsByUser(userId);
-  }, [getAccountsByUser, userId]);
+    getAccountsByUser(Number(userId));
+  }, [getAccountsByUser, Number(userId)]);
 
   useEffect(() => {
-    setAccounts(accountsByUser[userId] || []);
-  }, [accountsByUser, userId]);
+    setAccounts(accountsByUser[Number(userId)] || []);
+  }, [accountsByUser, Number(userId)]);
 
   useEffect(() => {
-    setToken(linkTokens.byUser[userId]);
-  }, [linkTokens, userId, numOfItems]);
+    setToken(linkTokens.byUser[Number(userId)]);
+  }, [linkTokens, Number(userId), numOfItems]);
 
   document.getElementsByTagName('body')[0].style.overflow = 'auto'; // to override overflow:hidden from link pane
   return (
@@ -133,7 +133,7 @@ const UserPage = () => {
         BACK TO LOGIN
       </Link>
 
-      <Banner />
+      {/* <Banner /> */}
       {linkTokens.error.error_code != null && (
         <Callout warning>
           <div>
@@ -151,7 +151,7 @@ const UserPage = () => {
           </div>
         </Callout>
       )}
-      <UserCard user={user} userId={userId} removeButton={false} linkButton />
+      <UserCard user={user} userId={Number(userId)} removeButton={false} linkButton />
 
       <Callout style={{ marginBottom: '2rem' }}>
         <div>
@@ -207,14 +207,14 @@ const UserPage = () => {
 
             {token != null && token.length > 0 && (
               // Link will not render unless there is a link token
-              <LaunchLink token={token} userId={userId} itemId={null} />
+              <LaunchLink token={token} userId={Number(userId)} itemId={null} />
             )}
           </div>
 
           <ErrorMessage />
           {items.map(item => (
             <div id="itemCards" key={item.id}>
-              <ItemCard item={item} userId={userId} />
+              <ItemCard item={item} userId={Number(userId)} />
             </div>
           ))}
         </>
@@ -238,7 +238,7 @@ const UserPage = () => {
             accounts={accounts}
             numOfItems={numOfItems}
             personalAssets={assets}
-            userId={userId}
+            userId={Number(userId)}
             assetsOnly={false}
           />
         </>
@@ -249,7 +249,7 @@ const UserPage = () => {
             accounts={accounts}
             numOfItems={numOfItems}
             personalAssets={assets}
-            userId={userId}
+            userId={Number(userId)}
             assetsOnly
           />
         </>

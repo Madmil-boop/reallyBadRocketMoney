@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import useCurrentUser from '../services/currentUser.tsx';
 import Login from './Login.tsx';
-import Banner from './Banner.tsx';
+// import Banner from './Banner.tsx';
 import AddUserForm from './AddUserForm.tsx';
 
 import useBoolean from '../hooks/useBoolean.ts';
@@ -25,7 +25,7 @@ export default function Landing() {
   };
   return (
     <div>
-      <Banner initialSubheading />
+      {/* <Banner initialSubheading /> */}
       <div style={{ marginBottom: '2rem', textAlign: 'center', maxWidth: '600px', margin: '0 auto 2rem' }}>
         <p>
           If you don't have an account, please click "Create Account". Once created,

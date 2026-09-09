@@ -25,6 +25,8 @@ import UserCard from './UserCard.tsx';
 import LoadingCallout from './LoadingCallout.tsx';
 import ErrorMessage from './ErrorMessage.tsx';
 import TransactionsTable from './TransactionsTable.tsx';
+import MonthlyBudget from './MonthlyBudget.tsx';
+import NavBar from './NavBar.tsx';
 
 // provides view of user's net worth, spending by category and allows them to explore
 // account and transactions details for linked items
@@ -132,8 +134,10 @@ const UserPage = () => {
       <Link to="/" className="text-sm text-black-700 uppercase tracking-wider hover:text-black-1000 no-underline">
         BACK TO LOGIN
       </Link>
+      
 
       <Banner />
+      <NavBar />
       {linkTokens.error.error_code != null && (
         <Callout warning>
           <div>
@@ -151,6 +155,35 @@ const UserPage = () => {
           </div>
         </Callout>
       )}
+      <NetWorth
+            accounts={accounts}
+            numOfItems={numOfItems}
+            personalAssets={assets}
+            userId={Number(userId)}
+            assetsOnly={false}
+          />
+          <MonthlyBudget transactions={transactions} />
+
+          <div className="item__header" style={{ marginTop: '3rem' }}>
+            <h2 className="item__header-heading">All Transactions</h2>
+            <p className="item__header-subheading">
+              Complete transaction history across all linked accounts
+            </p>
+          </div>
+          <div className="box">
+            {/* top 5 most recent transactions */}
+            <TransactionsTable transactions={transactions.slice(0, 5)} />
+            <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+              <Link to={`/user/${userId}/transactions`}>
+                <Button>View All Transactions</Button>
+              </Link>
+            </div>
+          </div>
+
+          <SpendingInsights
+            numOfItems={numOfItems}
+            transactions={transactions}
+          />
       <UserCard user={user} userId={Number(userId)} removeButton={false} linkButton />
 
       {/* <Callout style={{ marginBottom: '2rem' }}>
@@ -221,6 +254,7 @@ const UserPage = () => {
       )}
       {numOfItems > 0 && transactions.length > 0 && (
         <>
+
           <div className="item__header" style={{ marginTop: '3rem' }}>
             <h2 className="item__header-heading">All Transactions</h2>
             <p className="item__header-subheading">
@@ -228,19 +262,19 @@ const UserPage = () => {
             </p>
           </div>
           <div className="box">
-            <TransactionsTable transactions={transactions} />
+            {/* top 5 most recent transactions */}
+            <TransactionsTable transactions={transactions.slice(0, 5)} />
+            <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+              <Link to={`/user/${userId}/transactions`}>
+                <Button>View All Transactions</Button>
+              </Link>
+            </div>
           </div>
-          <SpendingInsights
-            numOfItems={numOfItems}
-            transactions={transactions}
-          />
-          <NetWorth
-            accounts={accounts}
-            numOfItems={numOfItems}
-            personalAssets={assets}
-            userId={Number(userId)}
-            assetsOnly={false}
-          />
+
+            {/* <TransactionsTable transactions={transactions} />
+          </div> */}
+      
+
         </>
       )}
       {numOfItems === 0 && transactions.length === 0 && assets.length > 0 && (

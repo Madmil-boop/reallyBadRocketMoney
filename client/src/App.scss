@@ -338,7 +338,7 @@ transactions-table
 }
 
 .transactions-body {
-  height: 63 * $unit;
+  height: 20 * $unit;
   overflow-y: auto;
   overflow-x: hidden;
   text-align: left;
@@ -392,6 +392,7 @@ net worth
 .netWorthContainer {
   .netWorthDollars {
     margin-top: $unit;
+    margin-bottom: 0;
   }
 
   .netWorthHeading {
@@ -406,7 +407,7 @@ net worth
 
 .userDataBox {
   width: 69 * $unit;
-  min-height: 40 * $unit;
+  min-height: 20 * $unit;
   border: $border;
   margin-right: 2 * $unit;
 }

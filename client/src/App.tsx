@@ -3,6 +3,9 @@ import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import AllTransactionsPage from './components/AllTransactionsPage.tsx';
+import RecurringPage from './components/RecurringPage.tsx';
+import IncomePage from './components/IncomePage.tsx';
 import Sockets from './components/Sockets.jsx';
 import OAuthLink from './components/OAuthLink.tsx';
 import Landing from './components/Landing.tsx';
@@ -42,6 +45,9 @@ function App() {
                         <Routes>
                           <Route path="/" element={<Landing />} />
                           <Route path="/user/:userId" element={<UserPage />} />
+                          <Route path="/user/:userId/transactions" element={<AllTransactionsPage />} />
+                          <Route path="/user/:userId/recurring" element={<RecurringPage />} />
+                          <Route path="/user/:userId/income" element={<IncomePage />} />
                           <Route path="/oauth-link" element={<OAuthLink />} />
                           <Route path="/admin" element={<UserList />} />
                         </Routes>

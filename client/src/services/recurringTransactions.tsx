@@ -1,4 +1,5 @@
-import React, { useContext, useState, createContext } from 'react';
+
+import React, { useContext, useState, createContext, useCallback } from 'react';
 
 interface RecurringStream {
   stream_id: string;
@@ -31,11 +32,11 @@ export const RecurringProvider: React.FC<{ children: React.ReactNode }> = ({
     [userId: number]: RecurringData;
   }>({});
 
-  const getRecurringByUser = async (userId: number) => {
+  const getRecurringByUser = useCallback(async (userId: number) => {
     const response = await fetch(`/recurring-transactions/${userId}`);
     const data = await response.json();
     setRecurringByUser(prev => ({ ...prev, [userId]: data }));
-  };
+}, []);
 
   return (
     <RecurringContext.Provider value={{ recurringByUser, getRecurringByUser }}>

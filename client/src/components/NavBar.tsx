@@ -25,7 +25,7 @@ const NavBar = () => {
         Dashboard
       </NavLink>
       <NavLink to={`/user/${userId}/transactions`} style={linkStyle}>
-        All Transactions
+        Transactions
       </NavLink>
       <NavLink to={`/user/${userId}/recurring`} style={linkStyle}>
         Recurring

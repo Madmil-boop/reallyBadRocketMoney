@@ -77,6 +77,7 @@ app.use('/services', serviceRouter);
 app.use('/link-event', linkEventsRouter);
 app.use('/link-token', linkTokensRouter);
 app.use('/assets', assetsRouter);
+app.use('/recurring-transactions', require('./routes/recurringTransactions'));
 app.use('*', unhandledRouter);
 
 // Error handling has to sit at the bottom of the stack.

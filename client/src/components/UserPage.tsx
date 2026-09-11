@@ -184,38 +184,7 @@ const UserPage = () => {
             numOfItems={numOfItems}
             transactions={transactions}
           />
-      <UserCard user={user} userId={Number(userId)} removeButton={false} linkButton />
-
-      {/* <Callout style={{ marginBottom: '2rem' }}>
-        <div>
-          <strong>Testing with Dynamic Transaction Data:</strong>
-        </div>
-        <div style={{ marginTop: '8px' }}>
-          To test with realistic data, link a <strong>non-OAuth institution</strong> like{' '}
-          <strong>First Platypus Bank</strong> and use these Plaid Link credentials:{' '}
-          <code style={{ background: '#f0f0f0', padding: '2px 6px', borderRadius: '3px' }}>
-            user_transactions_dynamic
-          </code>{' '}
-          (any password). The "Refresh Transactions" button will trigger simulated transaction updates.
-          See the README for more information about testing with realistic transaction data.
-        </div>
-        <div style={{ marginTop: '8px' }}>
-          View incoming webhooks at{' '}
-          <a href="http://localhost:4040" target="_blank" rel="noopener noreferrer">
-            localhost:4040
-          </a>
-          .
-        </div>
-      </Callout> */}
-
-      {numOfItems === 0 && <ErrorMessage />}
-      {numOfItems > 0 && transactions.length === 0 && (
-        <div className="loading">
-          <LoadingSpinner />
-          <LoadingCallout />
-        </div>
-      )}
-      {numOfItems > 0 && (
+          {numOfItems > 0 && (
         <>
           <div className="item__header">
             <div>
@@ -252,30 +221,36 @@ const UserPage = () => {
           ))}
         </>
       )}
-      {numOfItems > 0 && transactions.length > 0 && (
-        <>
+      <UserCard user={user} userId={Number(userId)} removeButton={false} linkButton />
 
-          <div className="item__header" style={{ marginTop: '3rem' }}>
-            <h2 className="item__header-heading">All Transactions</h2>
-            <p className="item__header-subheading">
-              Complete transaction history across all linked accounts
-            </p>
-          </div>
-          <div className="box">
-            {/* top 5 most recent transactions */}
-            <TransactionsTable transactions={transactions.slice(0, 5)} />
-            <div style={{ textAlign: 'center', marginTop: '1rem' }}>
-              <Link to={`/user/${userId}/transactions`}>
-                <Button>View All Transactions</Button>
-              </Link>
-            </div>
-          </div>
+      {/* <Callout style={{ marginBottom: '2rem' }}>
+        <div>
+          <strong>Testing with Dynamic Transaction Data:</strong>
+        </div>
+        <div style={{ marginTop: '8px' }}>
+          To test with realistic data, link a <strong>non-OAuth institution</strong> like{' '}
+          <strong>First Platypus Bank</strong> and use these Plaid Link credentials:{' '}
+          <code style={{ background: '#f0f0f0', padding: '2px 6px', borderRadius: '3px' }}>
+            user_transactions_dynamic
+          </code>{' '}
+          (any password). The "Refresh Transactions" button will trigger simulated transaction updates.
+          See the README for more information about testing with realistic transaction data.
+        </div>
+        <div style={{ marginTop: '8px' }}>
+          View incoming webhooks at{' '}
+          <a href="http://localhost:4040" target="_blank" rel="noopener noreferrer">
+            localhost:4040
+          </a>
+          .
+        </div>
+      </Callout> */}
 
-            {/* <TransactionsTable transactions={transactions} />
-          </div> */}
-      
-
-        </>
+      {numOfItems === 0 && <ErrorMessage />}
+      {numOfItems > 0 && transactions.length === 0 && (
+        <div className="loading">
+          <LoadingSpinner />
+          <LoadingCallout />
+        </div>
       )}
       {numOfItems === 0 && transactions.length === 0 && assets.length > 0 && (
         <>

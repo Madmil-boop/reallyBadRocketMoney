@@ -4,6 +4,8 @@ import NavBar from './NavBar.tsx';
 import useTransactions from '../services/transactions.tsx';
 import TransactionsTable from './TransactionsTable.tsx';
 
+import Banner from './Banner.tsx';
+
 const AllTransactionsPage = () => {
   const { userId } = useParams<{ userId: string }>();
   const { transactionsByUser, getTransactionsByUser } = useTransactions();
@@ -14,8 +16,9 @@ const AllTransactionsPage = () => {
 
   const transactions = transactionsByUser[Number(userId)] || [];
 
-  return (
+  return (  
     <div>
+      <Banner />  
       <NavBar />
       <h2>All Transactions</h2>
       <div className="box">

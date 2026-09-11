@@ -30,6 +30,7 @@ body {
   margin-right: auto;
   margin-left: auto;
   padding: 10 * $unit 5 * $unit;
+  padding-top: 5 * $unit;
 }
 
 /*
@@ -40,8 +41,11 @@ shared styles
 .bottom-border-content {
   overflow: hidden;
   border-bottom: 1px solid $black1000;
-  margin-bottom: 4 * $unit;
-  padding-bottom: 4 * $unit;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  // margin-bottom: 4 * $unit;
+  // padding-bottom: 4 * $unit;
 }
 
 .box {
@@ -66,8 +70,9 @@ shared styles
 
 .header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  margin-bottom: 2 * $unit;
+  margin-bottom: 1 * $unit;
 }
 
 .value {
@@ -106,7 +111,8 @@ Content at the top of the view
 */
 
 .everpresent-content__heading {
-  margin-bottom: 2 * $unit;
+  // margin-bottom: 1 * $unit;
+  font-size: 3rem;
 }
 
 .everpresent-content__subheading {
@@ -384,6 +390,7 @@ net worth
   margin-top: $unit;
 }
 
+
 .netWorthText {
   font-size: 1rem;
   color: $black600;
@@ -391,12 +398,11 @@ net worth
 
 .netWorthContainer {
   .netWorthDollars {
-    margin-top: $unit;
     margin-bottom: 0;
   }
 
   .netWorthHeading {
-    margin-top: 7 * $unit;
+    // margin-top: 7 * $unit;
     margin-bottom: 0;
   }
 }

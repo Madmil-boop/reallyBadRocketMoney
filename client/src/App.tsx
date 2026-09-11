@@ -22,6 +22,7 @@ import { AssetsProvider } from './services/assets.tsx';
 import { ErrorsProvider } from './services/errors.tsx';
 
 import './App.scss';
+import { RecurringProvider } from './services/recurringTransactions.tsx';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
                 <ErrorsProvider>
                   <UsersProvider>
                     <CurrentUserProvider>
+                      <RecurringProvider>
                       <AssetsProvider>
                         <Sockets />
                         <Routes>
@@ -52,6 +54,7 @@ function App() {
                           <Route path="/admin" element={<UserList />} />
                         </Routes>
                       </AssetsProvider>
+                      </RecurringProvider>
                     </CurrentUserProvider>
                   </UsersProvider>
                 </ErrorsProvider>
